@@ -1,6 +1,6 @@
-# Marco
+# Whereabouts
 
-More time with friends, less time planning. Marco polo.
+More time with friends, less time planning.
 
 ## Team
 
@@ -26,7 +26,7 @@ Development:
 4. Server will be listening on localhost:8000.
 
 Production:
-Visit laudatoryflannel-flannel@herokuapp.com. Marco allows you to make events that are open to either the general public, or just your friends on the app. Avoid both lonely lunches and bloated group messages and spend less time planning and more quality time with friends.
+Visit laudatoryflannel-flannel@herokuapp.com. Whereabouts allows you to make events that are open to either the general public, or just your friends on the app. Avoid both lonely lunches and bloated group messages and spend less time planning and more quality time with friends.
 
 ## Requirements
 
