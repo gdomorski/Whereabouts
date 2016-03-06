@@ -1,30 +1,70 @@
-<div ng-controller='HomeController'>
-  <div id='home'>
-    <img class="loading" src="img/loading.gif" ng-show="loading">
-    <div id="map"></div>
-    <div>
-      <div class='largeText'>Events near you:</div>
-      <button ng-click="newMarker()"> Add Marker </button>
-    </div>
-  </div>
+<div class="col-md-10 col-md-offset-1 navbar" ng-show="!isLandingPage">
+    <a href="#login" class="col-md-4 text-center">Login</a>
+    <a href="#home" class="col-md-4 text-center">Home</a>
+    <a href="#friends" class="col-md-4 text-center">Friends</a>
 </div>
-<!-- <!doctype html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="../../styles/styles.css"/>
-    <script src="../../../bower_components/angular/angular.js"></script>
-    <script src="../../../bower_components/angular-route/angular-route.js"></script>
-    <script src="../../../bower_components/angular-mocks/angular-mocks.js"></script>
-    <script src="../../services/services.js"></script>
-    <script src="home.js"></script>
-    <script src="../facebookController.js"></script>
-    <script src="../mapController.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD2V3S0YNeUESwl6xl7al7v6NTDtCzDRQ"></script>
-  </head>
-  <body ng-app="greenfield.home">
-    <div ng-controller="mapController">
-      <img class="loading" src="../../img/loading.gif" ng-show="loading">
-      <div id="map"></div>
-    </div>
-  </body>
-</html> -->
+
+
+<div class="background">
+
+<div class="container-fluid">
+
+
+	<!-- Map Column -->
+	<div class="col-md-6 mapContainer" >
+	<!-- Map -->
+		<div class="col-md-12" id="map">
+		</div>
+	<!-- Map Direction Bar -->
+		<div class="col-md-12 text-center" id="floating-panel">
+			<span>Start: </span>
+			<select id="start">
+				<option value="{{position[0]}}, {{position[1]}}">
+					Your Location
+				</option>
+			</select>
+			<span>End: </span>
+			<select id="end">
+				<option ng-repeat="data in allEvents" value="{{data.location.coordinates[1]}}, {{data.location.coordinates[0]}}">{{data.userName}}: {{data.title}}</option>
+			</select>
+		</div>
+	</div>
+
+	<!-- Nearby Events Column -->
+	<div class="col-md-3 nearbyEvents">
+		<h2 class="columnHeader">Events Near You</h2>
+	<!-- Individual Events -->
+		<div class="event" ng-repeat="data in allEvents">
+			<li><span style="font-weight:bold;">{{data.userName}}</span><span style="float:right;">{{prettifyDate(data.endedAt)}} </span></li>
+			<!-- <li>Until: {{data.endedAt}}</li> -->
+			<li>{{data.description}}</li>
+			<button ng-click="callMarker($index)">Get event info</button>
+		</div>
+	</div>
+
+
+<div ng-controller="EventController">
+	<!-- Create Event Column -->
+	<div class="col-md-3 createEvent" ng-controller="EventController" style="overflow: auto;">
+		<h2 class="columnHeader">Create Event </h2>
+	<!-- Create Event Form -->
+		<form>             
+			<label for="Title" ng-model="title">Title: </label><br>
+            <input ng-model="title" type="text"/><br>
+            <label for="location">Location: </label><br>
+            <input type="text" ng-model="address" id="txtPlaces" style="width: 250px" name="location" placeholder="Enter a location" required/><br>
+            <label for="datetime2">Ending Time: </label><br>
+            <input type="datetime-local" ng-model="endedAt"/><br>
+            <label for="Description">Event Description: </label><br>
+            <textarea id="Description" ng-model="description" rows="3" cols="20"></textarea><br>
+            <label for="isPublic">Make public: </label>
+            <input id="isPublic" type='checkbox' ng-model='isPublic' /><br>
+            <input ng-click="sendForm()" type="submit"/>
+		</form>
+		<div ng-if="boxAppear" id="directions" style="float: left" border-top="2px" border-top="1px"> <h2> Directions </h2> </div>
+		<div id="contactLink"></div>
+	</div>
+</div>
+</div>
+
+</div>

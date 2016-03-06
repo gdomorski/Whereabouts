@@ -1,37 +1,65 @@
-//used purely for testing - production code will not utilize a default user
-var DEFAULT_USER = {
-  _id: '12345',
-  name: 'User McUser'
-};
-
 angular.module('greenfield.friends', ['greenfield.services'])
-.controller('FriendsController', function ($scope, localStorage, HTTP) {
-  $scope.user = localStorage.get('flannel.user') || DEFAULT_USER;
-  $scope.endpointUrl = '/users/' + $scope.user._id + '/friends';
+.factory('Friends', function (HTTP) {
+  var modifyFriend = function (userId, friend, action) {
+    console.log('modifying friend', userId)
+    data = {
+      friend: friend,
+      action: action
+    }
+    return HTTP.sendRequest('POST', '/users/' + userId + '/friends', data);
+  };
+
+  var getAllFriends = function (userId) {
+    return HTTP.sendRequest('GET', '/users/' + userId + '/friends');
+  };
+
+  var getAllUsers = function () {
+    return HTTP.sendRequest('GET', '/users');
+  };
+
+  return { 
+    modifyFriend: modifyFriend,
+    getAllFriends: getAllFriends,
+    getAllUsers: getAllUsers
+  };
+})
+.controller('FriendsController', function ($scope, localStorage, Friends) {
+  $scope.userId = localStorage.get('flannel._id');
   $scope.friends = [];
   $scope.users = [];
 
-  $scope.add = function(friendId) {
-    HTTP.sendRequest('POST', $scope.endpointUrl)
-    .then(function(response) {
-      $scope.getAll();
+  $scope.addFriend = function(friend) {
+    console.log('calling $scope.addFriend', friend)
+    $scope.search = null;
+    Friends.modifyFriend($scope.userId, friend, 'add')
+    .then(function(data) {
+      $scope.friends.push(friend);
     });
   };
 
   $scope.getAllFriends = function() {
-    HTTP.sendRequest('GET', $scope.endpointUrl)
-    .then(function(response) {
-      if (response.data) {
-        $scope.friends = response.data;
-      }
-    })
+    Friends.getAllFriends($scope.userId)
+    .then(function(result) {
+      $scope.friends = result.data;
+    });
   };
 
   $scope.getAllUsers = function() {
-    HTTP.sendRequest('GET', '/users')
-    .then(function(response) {
-      $scope.users = response.data;
+    Friends.getAllUsers()
+    .then(function(result) {
+      $scope.users = result.data;
     });
+  };
+
+  $scope.deleteFriend = function(friend) {
+   Friends.modifyFriend($scope.userId, friend, 'delete')
+   .then(function(data) {
+     for (var i = 0; i < $scope.friends.length; i++) {
+      if ($scope.friends[i] === friend) {
+        $scope.friends.splice(i, 1);
+      }
+     }
+   });
   };
 
   $scope.getAllFriends();

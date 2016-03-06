@@ -2,7 +2,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background: white;
+  background: black;
 }
 
 h1, h2, h3, h4 {
@@ -11,7 +11,7 @@ h1, h2, h3, h4 {
 
 /* ---- Auth page ---- */
 div.auth {
-  background-image: url('../img/coffee.jpg');
+  /*background-image: url('../img/coffee.jpg');*/
   height: 600px;
 }
 
@@ -44,9 +44,108 @@ div.auth {
 
 .logo {
   color: white;
+  border-top: 0;
 }
 
 /* ---- Home page ---- */
+
+.navbar {
+  background-color: #ccc;
+  padding: 12px;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.navbar a {
+  font-family:"Roboto", "sans-serif";
+  font-size: 20px;
+  display: block;
+  position: relative;
+  text-decoration: none;
+  height: 100%;
+  cursor: pointer;
+}
+
+.navbar a:hover {
+  background-color: #999;
+}
+
+div {
+  /*border: dotted 1px red;*/
+}
+.background {
+  top:0;
+  left:0;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  background-image: url(../img/park.jpeg);
+  background-size: cover;
+}
+
+.container-fluid {
+  /*border: dashed 2px blue;*/
+  padding: 60px;
+}
+
+.mapContainer {
+  border-right: solid black 2px;
+  padding: 0px;
+  background-color: #ccc;
+}
+
+#map {
+  width: 100%;
+  height: 505px;
+}
+
+.nearbyEvents {
+  background-color: #999;
+  overflow: auto;
+  height: 528px;
+  padding: 0px;
+}
+
+.event {
+  color:#444;
+  padding:5px;
+  background-color: #cdc;
+  border-radius: 2px;
+  margin: 5px;
+}
+
+.event li {
+  list-style: none;
+}
+
+.event button {
+  margin: 0px;
+  border-radius: 2px;
+  border: solid 1px white;
+  font-size: 10px;
+  padding: 2px;
+}
+
+.createEvent {
+  color:#444;
+  height: 528px;
+  background-color: #ccc;
+  padding: 0px;
+}
+
+.createEvent form {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.columnHeader {
+  text-align: center;
+  border-bottom: solid 1px black;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+/*
 
 #map {
   height: 500px;
@@ -75,6 +174,99 @@ div.auth {
   width: 50px;
   top: 225px;
   left: 225px;
+}*/
+
+#over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
+#under {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
 
+#video-bg {
+  height: 100%;
+  width: 100%;
+}
+/*
+.btn {
+  background-color: green;
+}*/
+
+/* ---- Friends page ---- */
+
+.friend {
+  border-radius: 5px;
+  background-repeat: no-repeat;
+  background-color: #ccc;
+  padding-top: 100px;
+  height: 150px;
+}
+
+.friend span {
+  margin-bottom: 2px;
+  color: black;
+  background-color: white;
+  opacity: .9;
+  padding: 1px;
+}
+
+.friend button {
+  color: red;
+  float: right;
+  margin: 1px;
+}
+/*
+.friendImage {
+  position: relative;
+  padding: 8px;
+  color: #fff;
+  background-size: cover;
+  width: 15%;
+  height: 256px;
+  display: block;
+  float: left;
+  margin: 4px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 4px rgba(100, 100, 100, 0.5);
+
+  transition: all .2s ease-in-out;
+}
+
+.removeButton {
+  position: absolute;
+  bottom:   10px;
+}
+
+.friendName {
+  position: absolute;
+  bottom:   30px;
+}*/
+
+.friendPreview {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+}
+/*
+.col1 {
+  width: 1%;
+}
+
+td {
+  text-align: left;
+  vertical-align:middle;   
+}
+*/
+
+/* Used on landing page to move text/buttons to the right */
+.container { 
+  margin-left: 150px;
+}
