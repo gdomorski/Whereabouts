@@ -15,6 +15,7 @@ More time with friends, less time planning.
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Team](#team)
+1. [Screenshots] (#screenshots)
 1. [Contributing](#contributing)
 
 ## Usage
@@ -27,6 +28,13 @@ Development:
 
 Production:
 Visit laudatoryflannel-flannel@herokuapp.com. Whereabouts allows you to make events that are open to either the general public, or just your friends on the app. Avoid both lonely lunches and bloated group messages and spend less time planning and more quality time with friends.
+
+## Screenshots
+
+![Alt text](/client/img/screenshot1.png?raw=true "Optional Title")
+![Alt text](/client/img/screenshot2.png?raw=true "Optional Title")
+![Alt text](/client/img/screenshot3.png?raw=true "Optional Title")
+![Alt text](/client/img/screenshot4.png?raw=true "Optional Title")
 
 ## Requirements
 
